@@ -26,12 +26,10 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = RichTextUploadingField(blank=True, null= True, config_name='portal_config')
-    hiking_icon = models.BooleanField(default=False, blank=True)
-    accomodation_icon = models.BooleanField(default=False, blank=True)
-    camping_icon = models.BooleanField(default=False, blank=True)
+    
     days_icon = models.BooleanField(default=False, blank=True)
     hours_icon = models.BooleanField(default=False, blank=True)
-    duration = models.CharField(max_length=5, blank=True, null=True)
+    
     
     header_image = models.ImageField(
          null=True, blank=False, upload_to="images/")

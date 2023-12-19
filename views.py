@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post, Category
+from models import Post, Category
 
 def is_valid_queryparam(param):
     return  param !='' and param is not None
@@ -20,7 +20,7 @@ def FilterView(request):
     date_min = request.GET.get('date_min')
     date_max = request.GET.get('date_max')
     category = request.GET.get('category')
-    reviewed = request.GET.get('reviewed')
+    
     if is_valid_queryparam(title_contains_query):
        qs = qs.filter(title__icontains= title_contains_query) 
 
@@ -43,8 +43,7 @@ def FilterView(request):
     if is_valid_queryparam(category) and category != 'Choose...':
        qs = qs.filter(category__name=category)
 
-    if reviewed == 'on':
-       qs = qs.filter(reviewed = True) 
+    
     context = {
         'queryset': qs,
         'categories': categories,
